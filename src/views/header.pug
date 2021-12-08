@@ -1,0 +1,35 @@
+style.
+  ul {  
+  padding: 20px;
+  }
+  @media screen and (min-width: 768px) {
+  li {
+  font-size: 17px;
+  }
+  }
+  @media screen and (max-width: 1000px) {
+  li {
+  font-size: 11px;
+  }
+  }
+
+nav.navbar.navbar-expand-md.bg-danger.px-5.py-0.m-0.navbar-dark
+  .container-fluid
+    a.navbar-brand(href="/").ml-5.m-auto
+      img(src="/images/logo.jpg", alt="logo" width="100" height="100") 
+
+    button.navbar-toggler(type='button', data-toggle='collapse',data-target='#navbarSupportedContent',aria-controls='navbarSupportedContent',aria-expanded='false', aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+
+    .collapse.navbar-collapse.text-right(id='navbarSupportedContent')
+
+
+      ul.navbar-nav.text-capitalize.m-auto.text-size 
+        li.nav-item 
+          a.nav-link(href="/").text-white accueil
+        li.nav-item 
+          a.nav-link(href="/menu").text-white menu
+      ul.navbar-nav
+        li.nav-item.font-weight-bold 
+          a.nav-link.text-md-center.text-warning.font-weight-bold(href="tel:+514-714-5794") Nous Livrons
+            br 

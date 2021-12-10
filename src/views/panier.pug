@@ -15,10 +15,14 @@ block content
                             td= cartProduct.product.name 
                             td
                                 a(href="/produit/"+cartProduct.product.id)
-                                    img(src=cartProduct.product.image, alt=cartProduct.product.name, width="140")
+                                    img(src="/images/"+cartProduct.product.image, alt=cartProduct.product.name,height="70", width="70")
                             td #{cartProduct.product.prix}$
                             td= cartProduct.qté
-            h4.text-right Prix total: #{prixTotal}$
+            .container
+                h4.text-right Prix total: #{prixTotal}$
+                a(href="/menu")
+                    button(type="action").btn.btn-outline-success.btn-sm Retour au Menu
+            br
     else 
         .container.bg-info 
             h3.text-center Votre Panier est vide

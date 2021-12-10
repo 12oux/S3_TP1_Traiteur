@@ -1,0 +1,24 @@
+extends pageLayout
+
+block content
+    .jumbotron
+        h1.display-4.text-center Espace d'administration
+            p.lead Chez bRoux
+            hr.my-4
+            a.btn.btn-danger.btn-lg(href="#", role='button') Ajouter un plat!
+    .card
+        .card-body 
+            form(action="/admin/ajouter", method="POST")
+                .form-group
+                    label(for="name") Nom: 
+                    input(type="text", name="name", id="name").form-control
+                .form-group
+                    label(for="description") Description: 
+                    input(type="text", name="description", id="description").form-control 
+                .form-group
+                    label(for="prix") Prix: 
+                    input(type="text", name="prix", id="prix").form-control 
+                .form-group
+                    label(for="image") Image: 
+                    input(type="file", name="image", id="image" accept=".jpeg, .jpg").form-control
+                button(type="submit").btn.btn-success Ajouter

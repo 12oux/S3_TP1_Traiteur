@@ -1,0 +1,16 @@
+extends pageLayout
+
+block content 
+    .col-md-6.mx-auto 
+        .card 
+            img(src=product.image, alt=product.name).card-img-top
+            .card-body 
+                h4.card-title= product.name 
+                p.card-text= product.description 
+                h5 
+                    | Prix:
+                    span.badge.badge-pill.badge-secondary #{product.prix}$
+                hr
+                form(action="/ajouter-panier", method="POST")
+                    input(type="hidden", name="productId", value=product.id)
+                    button(type="submit").btn.btn-outline-success.btn-sm Ajouter au Panier

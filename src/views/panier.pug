@@ -1,0 +1,24 @@
+extends pageLayout
+
+block content
+    if hasProducts
+            table.table
+                thead.thead-dark
+                    tr
+                    th(scope='col') Nom
+                    th(scope='col') Image
+                    th(scope='col') Prix
+                    th(scope='col') Quantité
+                tbody
+                    each cartProduct in cartProducts
+                        tr
+                            td= cartProduct.product.name 
+                            td
+                                a(href="/produit/"+cartProduct.product.id)
+                                    img(src=cartProduct.product.image, alt=cartProduct.product.name, width="140")
+                            td #{cartProduct.product.prix}$
+                            td= cartProduct.qté
+            h4.text-right Prix total: #{prixTotal}$
+    else 
+        .container.bg-info 
+            h3.text-center Votre Panier est vide

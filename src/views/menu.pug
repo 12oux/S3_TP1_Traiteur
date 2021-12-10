@@ -1,73 +1,93 @@
 
 extends pageLayout
 block content
-  .container-fluid.bg-dark
-    br
-    .card-deck(style='justify-content: center;')
+    .jumbotron
+        h1.display-4.text-center Notre Menu
+            p.lead Chez bRoux
+            hr.my-4
     .row
-        .col-lg-4
-            .card(style='background-color: lightgray;')
-                .card-body
-                a(href='images/B1.jpg')
-                    img.img-fluid(src='images/B1.jpg' alt='B1' data-toggle='tooltip' title='Le luxe, abordable!' style='width: 100%; height: 200px; object-fit: cover;')
-                .card-footer(style='background-color: white;')
-                h4.text-center  Tartelette inversée au chutney de figue
-        .col-lg-4
-            .card(style='background-color: lightgray;')
-                .card-body
-                a(href='images/B2.jpg')
-                    img.img-fluid(src='images/B2.jpg' alt='B2' data-toggle='tooltip' title='Directement à votre porte!' style='width: 100%; height: 200px; object-fit: cover;')
-                .card-footer(style='background-color: white;')
-                h4.text-center  Huîtres alla Genoa
-        .col-lg-4
-            .card(style='background-color: lightgray;')
-                .card-body
-                a(href='images/B3.jpg')
-                    img.img-fluid(src='images/B3.jpg' alt='B3' data-toggle='tooltip' title='Simple et rapide!' style='width: 100%; height: 200px; object-fit: cover;')
-                .card-footer(style='background-color: white;')
-                h4.text-center  Betteraves jaunes di Frommagi
-            br
-        .col-lg-4
-            .card(style='background-color: lightgray;')
-                .card-body
-                a(href='images/B4.jpg')
-                    img.img-fluid(src='images/B4.jpg' alt='B4' data-toggle='tooltip' title='Un délice directement du poulaillier!' style='width: 100%; height: 200px; object-fit: cover;')
-                .card-footer(style='background-color: white;')
-                h4.text-center  Crevette du Sud
-        .col-lg-4
-            .card(style='background-color: lightgray;')
-                .card-body
-                a(href='images/B5.jpg')
-                    img.img-fluid(src='images/B5.jpg' alt='B5' data-toggle='tooltip' title='Taste dans la geule!' style='width: 100%; height: 200px; object-fit: cover;')
-                .card-footer(style='background-color: white;')
-                h4.text-center  Saumon au whisky
-        .col-lg-4
-            .card(style='background-color: lightgray;')
-                .card-body
-                a(href='images/B6.jpg')
-                    img.img-fluid(src='images/B6.jpg' alt='B6' data-toggle='tooltip' title='Délice de la mer!' style='width: 100%; height: 200px; object-fit: cover;')
-                .card-footer(style='background-color: white;')
-                h4.text-center  Thon sur crostini
-            br
-        .col-lg-4
-            .card(style='background-color: lightgray;')
-                .card-body
-                a(href='images/B7.jpg')
-                    img.img-fluid(src='images/B7.jpg' alt='B7' data-toggle='tooltip' title='Oh wow!' style='width: 100%; height: 200px; object-fit: cover;')
-                .card-footer(style='background-color: white;')
-                h4.text-center Boulettes au chocolat praliné
-        .col-lg-4
-            .card(style='background-color: lightgray;')
-                .card-body
-                a(href='images/B8.jpg')
-                    img.img-fluid(src='images/B8.jpg' alt='B8' data-toggle='tooltip' title="À s'en lècher les doigts!" style='width: 100%; height: 200px; object-fit: cover;')
-                .card-footer(style='background-color: white;')
-                h4.text-center  Sachet de canards
-        .col-lg-4
-            .card(style='background-color: lightgray;')
-                .card-body
-                a(href='images/B9.jpg')
-                    img.img-fluid(src='images/B9.jpg' alt='B9' data-toggle='tooltip' title='Miamilicious!' style='width: 100%; height: 200px; object-fit: cover;')
-                .card-footer(style='background-color: white;')
-                h4.text-center  Suprème de volaille avec porc seché
-    br
+        each product in products 
+            .col-sm-6.col-md-4 
+                .card
+                    img(src=product.image, alt=product.name).card-img-top
+                    .card-body 
+                        h4.card-title=product.name
+                        h5 
+                            | Prix:
+                            span.badge.badge-pill.badge-secondary #{product.prix}$
+                        hr
+                        .d-flex
+                            a(href="/produit/"+product.id).btn.btn-outline-secondary.btn-sm.mr-2 Info
+                            form(action="/ajouter-panier", method="POST")
+                                input(type="hidden", name="productId", value=product.id)
+                                button(type="submit").btn.btn-outline-success.btn-sm Ajouter au Panier
+//-   .container-fluid.bg-dark
+//-     br
+//-     .card-deck(style='justify-content: center;')
+//-     .row
+//-         .col-lg-4
+//-             .card(style='background-color: lightgray;')
+//-                 .card-body
+//-                 a(href='images/B1.jpg')
+//-                     img.img-fluid(src='images/B1.jpg' alt='B1' data-toggle='tooltip' title='Le luxe, abordable!' style='width: 100%; height: 200px; object-fit: cover;')
+//-                 .card-footer(style='background-color: white;')
+//-                 h4.text-center  Tartelette inversée au chutney de figue
+//-         .col-lg-4
+//-             .card(style='background-color: lightgray;')
+//-                 .card-body
+//-                 a(href='images/B2.jpg')
+//-                     img.img-fluid(src='images/B2.jpg' alt='B2' data-toggle='tooltip' title='Directement à votre porte!' style='width: 100%; height: 200px; object-fit: cover;')
+//-                 .card-footer(style='background-color: white;')
+//-                 h4.text-center  Huîtres alla Genoa
+//-         .col-lg-4
+//-             .card(style='background-color: lightgray;')
+//-                 .card-body
+//-                 a(href='images/B3.jpg')
+//-                     img.img-fluid(src='images/B3.jpg' alt='B3' data-toggle='tooltip' title='Simple et rapide!' style='width: 100%; height: 200px; object-fit: cover;')
+//-                 .card-footer(style='background-color: white;')
+//-                 h4.text-center  Betteraves jaunes di Frommagi
+//-             br
+//-         .col-lg-4
+//-             .card(style='background-color: lightgray;')
+//-                 .card-body
+//-                 a(href='images/B4.jpg')
+//-                     img.img-fluid(src='images/B4.jpg' alt='B4' data-toggle='tooltip' title='Un délice directement du poulaillier!' style='width: 100%; height: 200px; object-fit: cover;')
+//-                 .card-footer(style='background-color: white;')
+//-                 h4.text-center  Crevette du Sud
+//-         .col-lg-4
+//-             .card(style='background-color: lightgray;')
+//-                 .card-body
+//-                 a(href='images/B5.jpg')
+//-                     img.img-fluid(src='images/B5.jpg' alt='B5' data-toggle='tooltip' title='Taste dans la geule!' style='width: 100%; height: 200px; object-fit: cover;')
+//-                 .card-footer(style='background-color: white;')
+//-                 h4.text-center  Saumon au whisky
+//-         .col-lg-4
+//-             .card(style='background-color: lightgray;')
+//-                 .card-body
+//-                 a(href='images/B6.jpg')
+//-                     img.img-fluid(src='images/B6.jpg' alt='B6' data-toggle='tooltip' title='Délice de la mer!' style='width: 100%; height: 200px; object-fit: cover;')
+//-                 .card-footer(style='background-color: white;')
+//-                 h4.text-center  Thon sur crostini
+//-             br
+//-         .col-lg-4
+//-             .card(style='background-color: lightgray;')
+//-                 .card-body
+//-                 a(href='images/B7.jpg')
+//-                     img.img-fluid(src='images/B7.jpg' alt='B7' data-toggle='tooltip' title='Oh wow!' style='width: 100%; height: 200px; object-fit: cover;')
+//-                 .card-footer(style='background-color: white;')
+//-                 h4.text-center Boulettes au chocolat praliné
+//-         .col-lg-4
+//-             .card(style='background-color: lightgray;')
+//-                 .card-body
+//-                 a(href='images/B8.jpg')
+//-                     img.img-fluid(src='images/B8.jpg' alt='B8' data-toggle='tooltip' title="À s'en lècher les doigts!" style='width: 100%; height: 200px; object-fit: cover;')
+//-                 .card-footer(style='background-color: white;')
+//-                 h4.text-center  Sachet de canards
+//-         .col-lg-4
+//-             .card(style='background-color: lightgray;')
+//-                 .card-body
+//-                 a(href='images/B9.jpg')
+//-                     img.img-fluid(src='images/B9.jpg' alt='B9' data-toggle='tooltip' title='Miamilicious!' style='width: 100%; height: 200px; object-fit: cover;')
+//-                 .card-footer(style='background-color: white;')
+//-                 h4.text-center  Suprème de volaille avec porc seché
+//-     br

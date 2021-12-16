@@ -12,8 +12,10 @@ const p = path.join(appDir, 'src', 'data', 'confirmed.json');
 
 
 class Confirmed extends Cart {
-    constructor(cartId, prixTotal, products){
-        super(prixTotal, products);
+    constructor(cartId, prixTotal, cartProducts){
+        super(prixTotal, cartProducts);
+        console.log("CartProducts")
+        console.log(cartProducts)
         this.cartId = cartId;
     }
 
@@ -24,7 +26,6 @@ class Confirmed extends Cart {
                 if (!err) {
                     confirmed = JSON.parse(fileContent);
                 }
-
                 confirmed.push({cartId:this.cartId, prixTotal:this.prixTotal, products:[this.products]});
 
                 fs.writeFile(p, JSON.stringify(confirmed), err => {
@@ -33,6 +34,16 @@ class Confirmed extends Cart {
             });
 
         });
-    }}
+    }
+    static getConfirmed(callback){
+        fs.readFile(p, (err, fileContent) => {
+            let confirmed= {cartId:this.cartId , prixTotal: 0};
+            if (!err) {
+                confirmed = JSON.parse(fileContent);
+            }
+            callback(confirmed);
+        })
+    }
+}
 
 module.exports = Confirmed;

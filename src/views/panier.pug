@@ -18,11 +18,12 @@ block content
                             td
                                 a(href="/produit/"+cartProduct.product.id)
                                     img(src="/images/"+cartProduct.product.image, alt=cartProduct.product.name,height="70", width="70")
-                            td= cartProduct.végé
+                            td= cartProduct.végé 
                             td #{cartProduct.product.prix}$
                             td= cartProduct.qté
                             td
-                                button(type="delete").btn.btn-danger.btn-sm Enlever
+                                a(href="/delete")
+                                    button(type="action").btn.btn-danger.btn-sm Enlever
                     tr 
                         td 
                             a(href="/menu")

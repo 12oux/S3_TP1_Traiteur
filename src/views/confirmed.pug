@@ -15,5 +15,6 @@ block content
                         each confirmedCart in confirmedCarts
                             tr
                                 td= confirmedCart.cartId 
-                                td= confirmedCart.prixTotal 
+                                td= confirmedCart.prixTotal
+                                a(href="/confirmed/"+confirmed.cartId).btn.btn-outline-secondary.btn-sm.mr-2 Info 
                     a(href="/menu").btn.btn-outline-danger.mr-4 Retour au menu

@@ -7,8 +7,9 @@ router.get('/admin', adminController.getAdmin);
 router.post("/admin/ajouter", adminController.postAdmin);
 router.get("/adminLogin", adminController.getLoginAdmin);
 router.post("/adminLogin", adminController.postLoginAdmin);
-// router.get("/confirm", adminController.getConfirmed);
-router.post("/admin/confirm", adminController.postConfirmed);
+router.get("/confirmed", adminController.getConfirmed);
+router.get("/confirmed/:cartId", adminController.getCartDetails);
+router.post("/admin/confirmed", adminController.postConfirmed);
 
 
 module.exports = router;

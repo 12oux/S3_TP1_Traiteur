@@ -19,11 +19,12 @@ const getProductsFromFile = (callback) => {
 }
 
 class Product {
-    constructor(name, description, prix, image) {
+    constructor(name, description, prix, image, végé) {
         this.name = name;
         this.description = description;
         this.prix = prix;
         this.image = image;
+        this.végé = végé;
     }
     save(callback){
         this.id = uuid.v1();

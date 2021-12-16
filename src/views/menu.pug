@@ -19,15 +19,15 @@ block content
                                 span.badge.badge-pill.badge-secondary #{product.prix}$
                             h5 
                                 | Prix Moyen:
-                                input(type="radio", name="prix", id=product.prix, value=product.prix)
+                                input(type="radio", name="prix", id=product.prix, value=[product.prix*4])
                                 span.badge.badge-pill.badge-secondary #{product.prix*4} $
                             h5 
                                 | Prix Grand:
-                                input(type="radio", name="prix", id=product.prix, value=product.prix)
+                                input(type="radio", name="prix", id=product.prix, value=[product.prix*8])
                                 span.badge.badge-pill.badge-secondary #{product.prix*8}$
                             h5
                                 | Végétarien:
-                                input(type="checkbox", name="végé", value=product.végé)
+                                input(type="checkbox", name="végé", id=product.végé, value=product.végé)
                             hr
                             input(type="hidden", name="productId", value=product.id)
                             a(href="/produit/"+product.id).btn.btn-outline-secondary.btn-sm.mr-2 Info

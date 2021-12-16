@@ -12,12 +12,23 @@ block content
                     img(src="/images/"+product.image, alt=product.name, width="200", height="200").card-img-top
                     .card-body 
                         h4.card-title=product.name
-                        h5 
-                            | Prix:
-                            span.badge.badge-pill.badge-secondary #{product.prix}$
-                        hr
-                        .d-flex
+                        form(action="/ajouter-panier", method="POST")
+                            h5 
+                                | Prix Petit:
+                                input(type="radio", name="prix", id=product.prix, value=product.prix)
+                                span.badge.badge-pill.badge-secondary #{product.prix}$
+                            h5 
+                                | Prix Moyen:
+                                input(type="radio", name="prix", id=product.prix, value=product.prix)
+                                span.badge.badge-pill.badge-secondary #{product.prix*4} $
+                            h5 
+                                | Prix Grand:
+                                input(type="radio", name="prix", id=product.prix, value=product.prix)
+                                span.badge.badge-pill.badge-secondary #{product.prix*8}$
+                            h5
+                                | Végétarien:
+                                input(type="checkbox", name="végé", value=product.végé)
+                            hr
+                            input(type="hidden", name="productId", value=product.id)
                             a(href="/produit/"+product.id).btn.btn-outline-secondary.btn-sm.mr-2 Info
-                            form(action="/ajouter-panier", method="POST")
-                                input(type="hidden", name="productId", value=product.id)
-                                button(type="submit").btn.btn-outline-success.btn-sm Ajouter au Panier
+                            button(type="submit").btn.btn-outline-success.btn-sm Ajouter au Panier

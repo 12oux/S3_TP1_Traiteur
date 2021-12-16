@@ -1,0 +1,43 @@
+
+
+extends pageLayout
+
+block content
+    .container.my-4.text-center
+        br
+        h4.text-primary Confirmation de votre commande
+        .card.col-6.m-auto
+            .card-body
+                table.table
+                    thead.thead-light
+                        tr
+                        th(scope='col') Nom
+                        th(scope='col') Image
+                        th(scope='col') Végé
+                        th(scope='col') Prix
+                        th(scope='col') Quantité
+                    tbody
+                        each cartProduct in cartProducts
+                            tr
+                                td= cartProduct.product.name 
+                                td
+                                    a(href="/produit/"+cartProduct.product.id)
+                                        img(src="/images/"+cartProduct.product.image, alt=cartProduct.product.name,height="70", width="70")
+                                td= cartProduct.végé
+                                //- td= if(cartProduct.végé = true) {
+                                //-     "Oui"
+                                //- } else {
+                                //-     "Non"
+                                //- }
+                                td #{cartProduct.product.prix}$
+                                td= cartProduct.qté
+            .card-footer.text-center.bg-white
+                h4.text-right Prix total: #{prixTotal}$
+                a(href="/panier").btn.btn-outline-danger.mr-4 Retour au panier
+                form(action="/admin/confirm", method="POST")
+                    input(type="hidden", name="products", value=products)
+                    input(type="hidden", name="prixTotal", value=prixTotal)
+                    input(type="hidden", name="cartId", value=cartId)
+                    button(type="submit").btn.btn-success Commander
+
+                    

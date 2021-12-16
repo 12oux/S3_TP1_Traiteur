@@ -1,0 +1,19 @@
+extends pageLayout
+
+block content
+.container.my-4.text-center
+        br
+        h4.text-primary Commandes confirmées:
+        .card.col-6.m-auto
+            .card-body
+                table.table
+                    thead.thead-light
+                        tr
+                        th(scope='col') ID
+                        th(scope='col') Prix
+                    tbody
+                        each confirmedCart in confirmedCarts
+                            tr
+                                td= confirmedCart.cartId 
+                                td= confirmedCart.prixTotal 
+                    a(href="/menu").btn.btn-outline-danger.mr-4 Retour au menu

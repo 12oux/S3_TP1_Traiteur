@@ -7,10 +7,22 @@ block content
             .card-body 
                 h4.card-title= product.name 
                 p.card-text= product.description 
-                h5 
-                    | Prix:
-                    span.badge.badge-pill.badge-secondary #{product.prix}$
-                hr
                 form(action="/ajouter-panier", method="POST")
+                    h5 
+                        | Prix Petit:
+                        input(type="radio", name="prix", value=product.prix)
+                        span.badge.badge-pill.badge-secondary #{product.prix}$
+                    //- h5 
+                    //-     | Prix Moyen:
+                    //-     input(type="radio", name="prix", value=product.prix2)
+                    //-     span.badge.badge-pill.badge-secondary #{product.prix2}$
+                    //- h5 
+                    //-     | Prix Grand:
+                    //-     input(type="radio", name="prix", value=product.prix3)
+                    //-     span.badge.badge-pill.badge-secondary #{product.prix3}$
+                    h5
+                        | Végétarien:
+                        input(type="checkbox", name="végé", value=product.végé)
+                    hr
                     input(type="hidden", name="productId", value=product.id)
                     button(type="submit").btn.btn-outline-success.btn-sm Ajouter au Panier

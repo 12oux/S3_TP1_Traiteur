@@ -2,13 +2,15 @@ extends pageLayout
 
 block content
     if hasProducts
-            table.table
+            table.table.table-hover(style="width: 80%; margin:auto;")
                 thead.thead-dark
                     tr
                     th(scope='col') Nom
                     th(scope='col') Image
+                    th(scope='col') Végé
                     th(scope='col') Prix
                     th(scope='col') Quantité
+                    th(scope='col') 
                 tbody
                     each cartProduct in cartProducts
                         tr
@@ -16,12 +18,23 @@ block content
                             td
                                 a(href="/produit/"+cartProduct.product.id)
                                     img(src="/images/"+cartProduct.product.image, alt=cartProduct.product.name,height="70", width="70")
+                            td= cartProduct.végé
                             td #{cartProduct.product.prix}$
                             td= cartProduct.qté
-            .container
-                h4.text-right Prix total: #{prixTotal}$
-                a(href="/menu")
-                    button(type="action").btn.btn-outline-success.btn-sm Retour au Menu
+                            td
+                                button(type="delete").btn.btn-danger.btn-sm Enlever
+                    tr 
+                        td 
+                            a(href="/menu")
+                                button(type="action").btn.btn-outline-success.btn-sm Retour au Menu
+                        td.text-right(colspan = 4)  
+                            h4.text-right Prix total: #{prixTotal}$
+                        td
+                            a(href="/checkout")
+                                button.ml-auto(type="submit").btn.btn-success.btn-md Checkout
+                
+
+                
             br
     else 
         .container.bg-info 

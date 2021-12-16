@@ -22,7 +22,7 @@ app.use(adminRoutes);
 app.use(route);
 
 app.listen(port, () => {
-    console.log('Example app listening at http://localhost:${port}');
+    console.log('Chez bRoux app listening at http://localhost:${port}');
 });
 
 module.exports = app;

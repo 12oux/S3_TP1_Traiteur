@@ -33,7 +33,7 @@ exports.getCart = (req, res, next) => {
         products.forEach(product => {
           const productData = cart.products.find(prod => prod.id === product.id);
           if(productData) {
-            cartProducts.push({product: product, qté: productData.qté})
+            cartProducts.push({product: product, qté: productData.qté, végé: productData.végé})
           }
         });
   
@@ -61,3 +61,33 @@ exports.postCart = (req, res, next) => {
       });
     });
 }
+
+exports.getCheckout = (req, res, next) => {
+  Cart.getCart(cart => {
+    if (cart.products.length > 0) {
+      Product.findAll(products => {
+        let cartProducts = [];
+  
+        products.forEach(product => {
+          const productData = cart.products.find(prod => prod.id === product.id);
+          if(productData) {
+            cartProducts.push({product: product, qté: productData.qté})
+          }
+        });
+  
+        res.render("checkout", {
+          title: "Checkout",
+          cartProducts: cartProducts,
+          prixTotal: cart.prixTotal,
+          hasProducts: true
+        });
+      });
+    }
+    else {
+      res.render("checkout", {
+        title: "Checkout",
+        hasProducts: false
+      });
+    }
+    });
+  };

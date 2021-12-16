@@ -15,7 +15,7 @@ class Cart {
 
     }
 
-    static add(id , prixPlat, végé, callback) {
+    static add(id , prixPlat, callback) {
 
         fs.readFile(p, (err, fileContent) => {
             let cart = { products: [], prixTotal: 0};
@@ -29,7 +29,7 @@ class Cart {
                 cart.products[existingProductIndex].qté = cart.products[existingProductIndex].qté + 1;
             }
             else {
-                cart.products.push({id: id, qté: 1, végé});
+                cart.products.push({id: id, qté: 1});
             }
 
             cart.prixTotal = cart.prixTotal + +prixPlat;

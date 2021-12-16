@@ -1,5 +1,6 @@
 const Product = require('../models/Product');
 const Cart = require('../models/Cart');
+var passport = require('passport');
 
 exports.getHomepage = (req, res, next) => {
     res.render("main", { title: "Chez bRoux" })
@@ -14,6 +15,23 @@ exports.getMenu = (req, res, next) => {
         });
     });
   }
+
+exports.getLoginPage = ( req, res , next) => {
+    res.render("userLogin", {});
+}
+
+exports.postLogin =  (req, res, next) => {
+    passport.authenticate('local', function(err, user, info) {
+      if (err) { return next(err); }
+      if (!user) {
+        return res.json({status: 'error', message: info.message});
+      }
+      req.logIn(user, function(err) {
+        if (err) { return next(err); }
+        return res.render("main", {status: 'ok'});
+      });
+    })(req, res, next);
+}
 
 exports.getProductDetails= (req, res, next) => {
     Product.findById(req.params.id, product => {

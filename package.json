@@ -1,21 +1,31 @@
 {
-  "name": "tp1_traiteur",
+  "name": "tp1_traiteur2",
   "version": "1.0.0",
-  "description": "traiteur",
+  "description": "traiteur2",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
+<<<<<<< HEAD
     "url": "git+https://github.com/12oux/TP1_Traiteur.git"
+=======
+    "url": "git+https://github.com/12oux/traiteur2.git"
+>>>>>>> b98d1292c659f7c02c8aaed47171d7a1ad68521b
   },
   "author": "Benoit Robichaud",
   "license": "ISC",
   "bugs": {
+<<<<<<< HEAD
     "url": "https://github.com/12oux/TP1_Traiteur/issues"
   },
   "homepage": "https://github.com/12oux/TP1_Traiteur#readme",
+=======
+    "url": "https://github.com/12oux/traiteur2/issues"
+  },
+  "homepage": "https://github.com/12oux/traiteur2#readme",
+>>>>>>> b98d1292c659f7c02c8aaed47171d7a1ad68521b
   "dependencies": {
     "body-parser": "^1.19.0",
     "bootstrap": "^5.1.3",

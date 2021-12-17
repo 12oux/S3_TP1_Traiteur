@@ -3,32 +3,35 @@ extends pageLayout
 block content
     .jumbotron
         h1.display-4.text-center Notre Menu
-            p.lead Chez bRoux
+            h4.lead.text-center Chez bRoux
             hr.my-4
+            p.text-center Des bouchées des plus somptueuses pour tout les goûts!
     .row
         each product in products 
-            .col-sm-6.col-md-4
+            .col-sm-6.col-md-3
                 .card 
-                    img(src="/images/"+product.image, alt=product.name, width="200", height="200").card-img-top
+                    a(href="/produit/"+product.id)
+                        img(src="/images/"+product.image, alt=product.name, width="200", height="200").card-img-top
                     .card-body 
                         h4.card-title=product.name
                         form(action="/ajouter-panier", method="POST")
                             h5 
-                                | Prix Petit:
+                                | Par Bouchée:
                                 input(type="radio", name="prix", id=product.prix, value=product.prix)
                                 span.badge.badge-pill.badge-secondary #{product.prix}$
                             h5 
-                                | Prix Moyen:
-                                input(type="radio", name="prix", id=product.prix, value=[product.prix*4])
-                                span.badge.badge-pill.badge-secondary #{product.prix*4} $
+                                | 10 Bouchées:
+                                input(type="radio", name="prix", id=product.prix, value=product.prix*4)
+                                span.badge.badge-pill.badge-secondary #{product.prix*6} $
                             h5 
-                                | Prix Grand:
-                                input(type="radio", name="prix", id=product.prix, value=[product.prix*8])
-                                span.badge.badge-pill.badge-secondary #{product.prix*8}$
+                                | 25 Bouchées:
+                                input(type="radio", name="prix", id=product.prix, value=product.prix*8)
+                                span.badge.badge-pill.badge-secondary #{product.prix*15}$
                             h5
-                                | Végétarien:
+                                | Option Végane:
                                 input(type="checkbox", name="végé", id=product.végé, value=product.végé)
                             hr
                             input(type="hidden", name="productId", value=product.id)
                             a(href="/produit/"+product.id).btn.btn-outline-secondary.btn-sm.mr-2 Info
                             button(type="submit").btn.btn-outline-success.btn-sm Ajouter au Panier
+    br

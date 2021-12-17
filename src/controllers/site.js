@@ -52,7 +52,7 @@ exports.getCart = (req, res, next) => {
         products.forEach(product => {
           const productData = cart.products.find(prod => prod.id === product.id);
           if(productData) {
-            cartProducts.push({product: product, qté: productData.qté, végé: productData.végé})
+            cartProducts.push({product: product, qté: productData.qté, végé: productData.végé, prix: productData.prix})
           }
         });
   
@@ -88,7 +88,7 @@ exports.getCart = (req, res, next) => {
 
 exports.postCart = (req, res, next) => {
     Product.findById(req.body.productId, product => {
-      Cart.add(req.body.productId, product.prix, req.body.végé, () => {
+      Cart.add(req.body.productId, req.body.prix, req.body.végé, () => {
         res.redirect('panier');
         console.log("Dans Cart.add")
         console.log(req.body)
@@ -105,7 +105,7 @@ exports.getCheckout = (req, res, next) => {
         products.forEach(product => {
           const productData = cart.products.find(prod => prod.id === product.id);
           if(productData) {
-            cartProducts.push({product: product, qté: productData.qté, végé: productData.végé})
+            cartProducts.push({product: product, qté: productData.qté, végé: productData.végé, prix: productData.prix})
           }
         });
   

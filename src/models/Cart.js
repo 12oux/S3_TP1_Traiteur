@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const uuid = require('uuid');
+const Product = require('./Product');
 
 const appDir= path.dirname(require.main.filename);
 
@@ -25,10 +26,10 @@ class Cart {
 
     }
 
-    static add(id , prixPlat, végé, callback) {
+    static add(id , prix, végé, callback) {
 
         fs.readFile(p, (err, fileContent) => {
-            let cart = { products: [], végé:végé, prixTotal: 0};
+            let cart = { products: [], prix:prix, végé:végé, prixTotal: 0};
             if (!err) {
                 cart = JSON.parse(fileContent);
             }
@@ -39,10 +40,10 @@ class Cart {
                 cart.products[existingProductIndex].qté = cart.products[existingProductIndex].qté + 1;
             }
             else {
-                cart.products.push({id: id, qté: 1, végé:végé});
+                cart.products.push({id: id, qté: 1, végé:végé, prix:prix});
             }
 
-            cart.prixTotal = cart.prixTotal + +prixPlat;
+            cart.prixTotal = cart.prixTotal + +prix;
 
 
                 fs.writeFile(p, JSON.stringify(cart), err => {
@@ -76,7 +77,7 @@ class Cart {
         })
     }
 
-    
+
 
 }
 

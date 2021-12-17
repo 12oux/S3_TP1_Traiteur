@@ -3,10 +3,11 @@ extends pageLayout
 block content
     .jumbotron
         h1.display-4.text-center Espace d'administration
-            p.lead Chez bRoux
-            hr.my-4
+            h4.lead.text-center Chez bRoux
+            hr.my-4 
+            p.text-center Ajoutez des plats comme bon vous semble, monsieur le chef!
 
-    .card
+    .card.col-6.m-auto
         .card-body 
             form(action="/admin/ajouter", method="POST")
                 .form-group
@@ -22,3 +23,4 @@ block content
                     label(for="image") Image: 
                     input(type="file", name="image", id="image" accept=".jpeg, .jpg").form-control
                 button(type="submit").btn.btn-success Ajouter
+    br

@@ -1,6 +1,7 @@
 extends pageLayout
 
 block content 
+    br
     .col-md-6.mx-auto 
         .card 
             img(src="/images/"+product.image, alt=product.name).card-img-top
@@ -9,20 +10,21 @@ block content
                 p.card-text= product.description 
                 form(action="/ajouter-panier", method="POST")
                     h5 
-                        | Prix Petit:
+                        | Par Bouchée:
                         input(type="radio", name="prix", value=product.prix)
                         span.badge.badge-pill.badge-secondary #{product.prix}$
                     h5 
-                        | Prix Moyen:
+                        | 10 Bouchées:
                         input(type="radio", name="prix", value=product.prix)
-                        span.badge.badge-pill.badge-secondary #{product.prix*4}$
+                        span.badge.badge-pill.badge-secondary #{product.prix*6}$
                     h5 
-                        | Prix Grand:
+                        | 25 Bouchées:
                         input(type="radio", name="prix", value=product.prix)
-                        span.badge.badge-pill.badge-secondary #{product.prix*4}$
+                        span.badge.badge-pill.badge-secondary #{product.prix*15}$
                     h5
-                        | Végétarien:
+                        | Option Végane:
                         input(type="checkbox", name="végé", id=product.végé, value=product.végé)
                     hr
                     input(type="hidden", name="productId", value=product.id)
                     button(type="submit").btn.btn-outline-success.btn-sm Ajouter au Panier
+    br

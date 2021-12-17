@@ -6,7 +6,7 @@ block content
     .container.my-4.text-center
         br
         h4.text-primary Confirmation de votre commande
-        .card.col-6.m-auto
+        .card.col-md-12.col-lg-6.m-auto
             .card-body
                 table.table
                     thead.thead-light
@@ -24,15 +24,15 @@ block content
                                     a(href="/produit/"+cartProduct.product.id)
                                         img(src="/images/"+cartProduct.product.image, alt=cartProduct.product.name,height="70", width="70")
                                 td= cartProduct.végé
-                                td #{cartProduct.product.prix}$
+                                td= cartProduct.prix + "$"
                                 td= cartProduct.qté
             .card-footer.text-center.bg-white
                 h4.text-right Prix total: #{prixTotal}$
-                a(href="/panier").btn.btn-outline-danger.mr-4 Retour au panier
                 form(action="/admin/confirmed", method="POST")
                     input(type="hidden", name="products", value=[cartProducts])
                     input(type="hidden", name="prixTotal", value=prixTotal)
                     input(type="hidden", name="cartId", value=cartId)
+                    a(href="/panier").btn.btn-outline-danger.mr-4 Retour au panier
                     button(type="submit").btn.btn-success Commander
-
+                    
                     

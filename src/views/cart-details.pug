@@ -1,27 +1,31 @@
 extends pageLayout
 
 block content 
+    br
     .col-md-6.mx-auto 
         .card 
-            .card-body 
-                h4.card-title= confirmed.cartID 
-                p.card-text= product.description 
-                form(action="/ajouter-panier", method="POST")
-                    h5 
-                        | Prix Petit:
-                        input(type="radio", name="prix", value=product.prix)
-                        span.badge.badge-pill.badge-secondary #{product.prix}$
-                    h5 
-                        | Prix Moyen:
-                        input(type="radio", name="prix", value=product.prix)
-                        span.badge.badge-pill.badge-secondary #{product.prix*4}$
-                    h5 
-                        | Prix Grand:
-                        input(type="radio", name="prix", value=product.prix)
-                        span.badge.badge-pill.badge-secondary #{product.prix*4}$
-                    h5
-                        | Végétarien:
-                        input(type="checkbox", name="végé", value=product.végé)
-                    hr
-                    input(type="hidden", name="productId", value=product.id)
-                    button(type="submit").btn.btn-outline-success.btn-sm Ajouter au Panier
+            .card-head 
+                h4.card-title.text-center.mt-3= "Votre Panier" 
+                p.card-text.text-center= confirmed.cartId
+                      .card.col-md-12.col-lg-6.m-auto
+            .card-body
+                table.table
+                    thead.thead-light
+                        tr
+                        th(scope='col') Nom
+                        th(scope='col') Végé
+                        th(scope='col') Prix
+                        th(scope='col') Quantité
+                    tbody
+                        each product in products
+                            tr
+                                td= product.product.name 
+                                td= product.végé
+                                td= product.prix + "$"
+                                td= product.qté
+            .card-footer 
+                h5.text-right= "Prix Total:" + confirmed.prixTotal + "$"
+        br
+        a(href="/confirmed")
+            button(type="submit").btn.btn-outline-success.btn-sm Retour aux commandes
+    br

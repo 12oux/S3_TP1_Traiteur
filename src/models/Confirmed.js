@@ -10,12 +10,20 @@ const appDir= path.dirname(require.main.filename);
 
 const p = path.join(appDir, 'src', 'data', 'confirmed.json');
 
+const getConfirmedFromFile = (callback) => {
+    fs.readFile(p, (err, fileContent) => {
+        if (err) {
+            callback([]);
+        } 
+        else {
+            callback(JSON.parse(fileContent));
+        }
+    });
+}
 
 class Confirmed extends Cart {
     constructor(cartId, prixTotal, cartProducts){
         super(prixTotal, cartProducts);
-        console.log("CartProducts")
-        console.log(cartProducts)
         this.cartId = cartId;
     }
 
@@ -44,6 +52,12 @@ class Confirmed extends Cart {
             callback(confirmed);
         })
     }
+    static findById(cartId, callback){
+            getConfirmedFromFile(confirmed => {
+                const cart = confirmed.find(panier => panier.cartId === cartId);
+                callback(cart);
+            });
+        }
 }
 
 module.exports = Confirmed;

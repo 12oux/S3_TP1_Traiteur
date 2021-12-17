@@ -1,3 +1,7 @@
+.img:hover {
+    background-color: white;
+    opacity: 20%;
+}
 
 #carrousel {
     display: flexbox;

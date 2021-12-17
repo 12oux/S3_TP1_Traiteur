@@ -74,15 +74,15 @@ exports.getCart = (req, res, next) => {
   };
 
 
-// exports.deleteItem = (req, res, next, callback) => {
-//     Product.findById(req.body.productId, products => {
-//       products.splice(req.body.productId, 1);
-//     });
+exports.deleteItem = (req, res, next, callback) => {
+    Product.findById(req.body.productId, products => {
+      products.splice(req.body.productId, 1);
+    });
 
-//     res.render("panier", {
-//       title: "Panier",
-//   });
-//   }
+    res.redirect("panier", {
+      title: "Panier",
+  });
+}
 
 
 
@@ -90,8 +90,6 @@ exports.postCart = (req, res, next) => {
     Product.findById(req.body.productId, product => {
       Cart.add(req.body.productId, req.body.prix, req.body.végé, () => {
         res.redirect('panier');
-        console.log("Dans Cart.add")
-        console.log(req.body)
       });
     });
 }

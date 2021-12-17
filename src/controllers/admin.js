@@ -2,6 +2,7 @@ const Product = require("../models/Product");
 const Confirmed = require("../models/Confirmed");
 const Cart = require("../models/Cart");
 var adminPassport = require('passport');
+const { createPoolCluster } = require("mariadb");
 
 
 
@@ -43,30 +44,32 @@ exports.postConfirmed = (req, res) => {
 
 exports.getCartDetails = (req, res) => {
     Confirmed.findById(req.params.cartId, confirmed => {
+        let produits = JSON.parse(confirmed.products);
         res.render('cart-details', {
             confirmed: confirmed,
-            title: confirmed.cartId
+            title: confirmed.cartId,
+            products: produits,
         });
       });
 }
 
 
 exports.getConfirmed = (req, res, next) => {
-    Confirmed.getConfirmed(cart => {
+    Confirmed.getConfirmed(carts => {
         Cart.findAll(confirmed => {
             let confirmedCarts = [];
-
-            confirmed.forEach(cart => {
-                const cartData = cart.confirmed.find(panier => panier.cartId === cart.cartId);
+            carts.forEach(cart => {
+                const cartData = carts.find(panier => panier.cartId === cart.cartId);
                 if(cartData) {
                     confirmedCarts.push({cart: cart})
+
                 }
             });
 
             res.render("confirmed", {
                 title:"Confirmed",
                 confirmedCarts: confirmedCarts,
-                prixTotal: cart.prixTotal,
+                prixTotal: carts.prixTotal,
                 hasCarts: true
             });
         });

@@ -1,20 +1,27 @@
 extends pageLayout
 
 block content
-.container.my-4.text-center
+    .container.my-4.text-center
         br
-        h4.text-primary Commandes confirmées:
+        h4.text-danger Commandes confirmées:
         .card.col-6.m-auto
             .card-body
                 table.table
                     thead.thead-light
                         tr
                         th(scope='col') ID
-                        th(scope='col') Prix
+                        th(scope='col') Prix Total
+                        th(scope='col') Info
+                        th(scope='col') Finaliser
                     tbody
                         each confirmedCart in confirmedCarts
                             tr
-                                td= confirmedCart.cartId 
-                                td= confirmedCart.prixTotal
-                                a(href="/confirmed/"+confirmed.cartId).btn.btn-outline-secondary.btn-sm.mr-2 Info 
-                    a(href="/menu").btn.btn-outline-danger.mr-4 Retour au menu
+                                td= confirmedCart.cart.cartId 
+                                td= confirmedCart.cart.prixTotal
+                                td 
+                                    a(href="/confirmed/"+confirmedCart.cart.cartId).btn.btn-outline-secondary.btn-sm.mr-2 Info
+                                td
+                                    a(href="/delete")
+                                        button(type="action").btn.btn-danger.btn-sm Finaliser  
+            .card-footer.text-center
+                a(href="/menu").btn.btn-outline-danger.mr-4 Retour au menu

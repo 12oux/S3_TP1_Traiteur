@@ -10,7 +10,6 @@ router.get("/panier", indexController.getCart);
 router.get("/produit/:id", indexController.getProductDetails);
 router.post("/ajouter-panier", indexController.postCart);
 router.get("/checkout", indexController.getCheckout);
-
-// router.get("/delete", indexController.deleteItem);
+router.get("/delete", indexController.deleteItem);
 
 module.exports = router;
